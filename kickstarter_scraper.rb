@@ -4,9 +4,15 @@ require "nokogiri"
 
 def create_project_hash
   # write your code here
-project_hash = Hash.new(0)
-doc = Nokogiri(open("Kickstarter.html"))
 
+html = File.read('fixtures/kickstarter.html')
+doc = Nokogiri::HTML(html)
 
-project_hash
+projects = {}
+
+doc.css("li.project.grid_4").each do |project|
+projects[project] = {}
+end
+
+projects
 end
